@@ -56,7 +56,7 @@ passport.deserializeUser(function(id, done) {
     })
 })
 
-app.use(function (res, res, next) { //use res.locals.currentUser to access username
+app.use(function (req, res, next) { //use res.locals.currentUser to access username
     res.locals.currentUser = req.user 
     next()
 })
@@ -68,10 +68,10 @@ app.get("/", (req, res) => {
 app.get('/sign-up', (req, res) => res.render("sign-up-form"))
 
 app.post("/sign-up", (req, res, next) => {
-    bcrypt.hash("somePassword", 10, (err, hashedPassword) => {
+    bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
     const user = new User({
         username: req.body.username,
-        password: req.body.password
+        password: hashedPassword
     }).save(err => {
         if (err) {
             return next(err)
