@@ -9,7 +9,7 @@ const Schema = mongoose.Schema
 const mongoDb = "mongodb+srv://justin:justinAB@cluster0.yl43nkm.mongodb.net/ab_database?retryWrites=true&w=majority"
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true })
 const db = mongoose.connection
-db.on("error", console.error.build(console, "mongo connection error"))
+db.on("error", console.error.bind(console, "mongo connection error"))
 
 const User = mongoose.model(
     "User",

@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.ejs",
   "scripts": {
-    "start": "node ./bin/www",
-    "devstart": "nodemon ./bin/www",
-    "serverstart": "DEBUG=ExpressAuthentication:* npm run devstart"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
