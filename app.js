@@ -66,7 +66,9 @@ app.get("/", (req, res) => {
 })
 
 app.get('/sign-up', (req, res) => res.render("sign-up-form"))
+
 app.post("/sign-up", (req, res, next) => {
+    bcrypt.hash("somePassword", 10, (err, hashedPassword) => {
     const user = new User({
         username: req.body.username,
         password: req.body.password
@@ -76,6 +78,7 @@ app.post("/sign-up", (req, res, next) => {
         }
         res.redirect("/")
     })
+})
 })
 
 app.post(
