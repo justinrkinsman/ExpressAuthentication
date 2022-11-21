@@ -5,6 +5,7 @@ const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
+const bcrypt = require('bcryptjs')
 
 const mongoDb = "mongodb+srv://justin:justinAB@cluster0.yl43nkm.mongodb.net/ab_database?retryWrites=true&w=majority"
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true })
@@ -53,6 +54,11 @@ passport.deserializeUser(function(id, done) {
     User.findById(id, function(err, user) {
         done(err, user)
     })
+})
+
+app.use(function (res, res, next) { //use res.locals.currentUser to access username
+    res.locals.currentUser = req.user 
+    next()
 })
 
 app.get("/", (req, res) => {
