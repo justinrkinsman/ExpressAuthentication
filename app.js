@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express")
 const path = require("path")
 const session = require("express-session")
@@ -7,7 +8,7 @@ const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 const bcrypt = require('bcryptjs')
 
-const mongoDb = "mongodb+srv://justin:justinAB@cluster0.yl43nkm.mongodb.net/ab_database?retryWrites=true&w=majority"
+const mongoDb = process.env.MONGO_URL
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true })
 const db = mongoose.connection
 db.on("error", console.error.bind(console, "mongo connection error"))
